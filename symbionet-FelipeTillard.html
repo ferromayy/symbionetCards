@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tarjeta Personal — Fernanda Romay Isaias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --brand: #2a2f75; /* Azul profundo */
+        --brand-2: #5a3ea5; /* Violeta suave */
+        --text: #111827;
+        --muted: #6b7280;
+        --bg: #f4f6fb; /* Fondo claro azulado */
+        --card: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .wrap {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Tamaño estándar tarjeta 3.5 x 2 in (88.9 x 50.8 mm). Duplicamos px para mejor nitidez en pantalla. */
+      .card {
+        width: 700px;
+        height: 400px;
+        background: var(--card);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(17, 24, 39, 0.12);
+        display: grid;
+        grid-template-columns: 42% 58%;
+      }
+
+      .left {
+        position: relative;
+        padding: 24px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .photo {
+        width: 100%;
+        max-width: 260px;
+        aspect-ratio: 1/1;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        background: radial-gradient(
+            120% 120% at 0% 0%,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0) 60%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.05)
+          );
+        display: grid;
+        place-items: center;
+      }
+      .photo span {
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        line-height: 1.3;
+        padding: 18px;
+      }
+      .photo small {
+        opacity: 0.9;
+        font-weight: 500;
+      }
+      /* Reemplazá este pseudo-elemento por tu foto:
+       1) Eliminá el background anterior y usá una imagen con object-fit:cover,
+       2) o insertá un <img> dentro del .photo.  Ver comentario en HTML debajo. */
+
+      .right {
+        padding: 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: linear-gradient(
+          135deg,
+          var(--brand) 0%,
+          var(--brand-2) 100%
+        );
+        box-shadow: 0 6px 16px rgba(107, 92, 255, 0.35);
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.15;
+        margin: 8px 0 0;
+      }
+      .role {
+        color: var(--muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 12px;
+      }
+      .claim {
+        margin-top: 6px;
+        font-size: 16px;
+        color: #1f2937;
+      }
+
+      .contact {
+        display: grid;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        color: #111827;
+      }
+      .row svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.9;
+      }
+
+      .cta {
+        margin-top: 8px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        text-decoration: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: 2px solid transparent;
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #fff;
+        box-shadow: 0 6px 18px rgba(32, 227, 178, 0.28);
+      }
+      .btn.ghost {
+        border-color: #e5e7eb;
+        color: #374151;
+      }
+
+      .qr {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-top: 1px dashed #e5e7eb;
+        padding-top: 16px;
+      }
+      .qr img {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+      }
+      .qr small {
+        color: var(--muted);
+      }
+
+      /* Versión "de bolsillo" para exportar como imagen */
+      @media (max-width: 780px) {
+        .card {
+          width: 100%;
+          height: auto;
+          grid-template-columns: 1fr;
+        }
+        .left {
+          min-height: 220px;
+          align-items: center;
+        }
+      }
+
+      /* Ajustes para impresión (A4 muestra la tarjeta centrada) */
+      @media print {
+        body {
+          background: #fff;
+        }
+        .card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <article
+        class="card"
+        aria-label="Tarjeta personal de Fernanda Romay Isaias"
+      >
+        <div class="left">
+          <div
+            class="photo"
+            role="img"
+            aria-label="Espacio para la foto de perfil"
+          >
+            <!-- 👉 Para usar tu foto:
+               Opción A) Reemplazá este bloque por <img src="ruta/de/tu-foto.jpg" alt="Foto de Fernanda" style="width:100%;height:100%;object-fit:cover;"/>
+               Opción B) Aplicá background-image vía CSS al div.photo: style="background:url('ruta.jpg') center/cover no-repeat;" y borrá el contenido interno. -->
+            <img
+              src="FerRomay.jpg"
+              alt="Foto de Fernanda"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="brand">
+            <div class="logo" aria-hidden="true">S</div>
+            <div>
+              <div class="role">SYMBIONET</div>
+              <h1>Fernanda Romay Isaias</h1>
+            </div>
+          </div>
+
+          <div class="role">Transformación Digital & IA aplicada</div>
+          <p class="claim">
+            Automatizamos e integramos procesos para que tu empresa gane tiempo,
+            reduzca costos y venda más.
+          </p>
+
+          <div class="contact" aria-label="Datos de contacto">
+            <div class="row">
+              <!-- Mail -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 4h16v16H4z" opacity=".08" />
+                <path d="M4 8l8 5 8-5" />
+              </svg>
+              <a href="mailto:fer@symbionet.tech">contacto@symbionet.tech</a>
+            </div>
+            <div class="row">
+              <!-- Tel/WhatsApp -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.08 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.33 1.6.64 2.34a2 2 0 0 1-.45 2.11L9.09 10.91a16 16 0 0 0 4 4l1.74-1.09a2 2 0 0 1 2.11-.45c.74.31 1.53.52 2.34.64A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              <a
+                href="https://wa.me/5493513053755"
+                target="_blank"
+                rel="noopener"
+                >+54 9 3513053755</a
+              >
+            </div>
+            <div class="row">
+              <!-- Web -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                />
+              </svg>
+              <a
+                href="https://www.symbionet.tech"
+                target="_blank"
+                rel="noopener"
+                >symbionet.tech</a
+              >
+            </div>
+            <div class="row">
+              <!-- LinkedIn -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              <a
+                href="https://www.linkedin.com/in/fernanda-romay-511bb31a3/"
+                target="_blank"
+                rel="noopener"
+                >linkedin.com/in/fer</a
+              >
+            </div>
+          </div>
+
+          <div class="cta">
+            <a
+              class="btn primary"
+              href="https://calendly.com/contacto-symbionet/reunion-gratuita"
+              target="_blank"
+              rel="noopener"
+              title="Agendar una reunión gratuita"
+              >Agendar reunión gratuita</a
+            >
+            <a
+              class="btn ghost"
+              href="mailto:fer@symbionet.tech"
+              title="Escribir un correo"
+              >Escribime</a
+            >
+          </div>
+
+          <div class="qr" aria-label="Código QR">
+            <!-- 👉 Reemplazá src por tu QR (PNG/SVG). Podés apuntarlo al Calendly o a tu landing /fer -->
+            <img src="FerRomay.jpg" alt="QR para agendar una reunión" />
+            <small>Escaneá para agendar por Calendly</small>
+          </div>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>
