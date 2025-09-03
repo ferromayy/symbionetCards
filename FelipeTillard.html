@@ -46,44 +46,34 @@
 
       /* Tamaño estándar tarjeta 3.5 x 2 in (88.9 x 50.8 mm). Duplicamos px para mejor nitidez en pantalla. */
       .card {
-        width: 700px;
-        height: 400px;
+        width: 900px;
+        height: 320px;
         background: var(--card);
-        border-radius: 20px;
+        border-radius: 24px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(17, 24, 39, 0.12);
-        display: grid;
-        grid-template-columns: 42% 58%;
+        box-shadow: 0 8px 32px rgba(42, 47, 117, 0.18);
+        display: flex;
+        flex-direction: row;
       }
-
       .left {
-        position: relative;
-        padding: 24px;
+        flex: 0 0 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: linear-gradient(135deg, var(--brand), var(--brand-2));
         color: #fff;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
+        padding: 0;
       }
       .photo {
-        width: 100%;
-        max-width: 260px;
-        aspect-ratio: 1/1;
+        width: 200px;
+        height: 200px;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-        background: radial-gradient(
-            120% 120% at 0% 0%,
-            rgba(255, 255, 255, 0.22) 0%,
-            rgba(255, 255, 255, 0) 60%
-          ),
-          linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.05)
-          );
-        display: grid;
-        place-items: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .photo span {
         display: block;
@@ -101,73 +91,79 @@
        2) o insertá un <img> dentro del .photo.  Ver comentario en HTML debajo. */
 
       .right {
-        padding: 34px;
+        flex: 1 1 0;
+        padding: 40px 48px 40px 40px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 18px;
       }
       .brand {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 18px;
+        margin-bottom: 6px;
       }
       .logo {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
         display: grid;
         place-items: center;
         color: #fff;
         font-weight: 700;
-        letter-spacing: 0.5px;
-        background: linear-gradient(
-          135deg,
-          var(--brand) 0%,
-          var(--brand-2) 100%
-        );
-        box-shadow: 0 6px 16px rgba(107, 92, 255, 0.35);
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 4px 12px rgba(42, 47, 117, 0.18);
       }
       h1 {
-        font-size: 28px;
-        line-height: 1.15;
-        margin: 8px 0 0;
+        font-size: 2rem;
+        line-height: 1.1;
+        margin: 0;
+        font-weight: 700;
       }
       .role {
-        color: var(--muted);
+        color: var(--brand-2);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        font-size: 12px;
+        font-size: 13px;
+        margin-bottom: 2px;
       }
       .claim {
-        margin-top: 6px;
-        font-size: 16px;
+        margin-top: 2px;
+        font-size: 1.1rem;
         color: #1f2937;
+        font-weight: 500;
       }
 
       .contact {
-        display: grid;
-        gap: 8px;
+        display: flex;
+        gap: 24px;
         margin-top: 10px;
+        flex-wrap: wrap;
       }
       .row {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         font-size: 15px;
-        color: #111827;
+        color: #2a2f75;
+        background: #f4f6fb;
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-weight: 500;
       }
       .row svg {
         width: 18px;
         height: 18px;
-        opacity: 0.9;
+        opacity: 0.8;
       }
 
       .cta {
-        margin-top: 8px;
+        margin-top: 18px;
         display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 12px;
       }
       .btn {
         text-decoration: none;
@@ -182,7 +178,16 @@
       .btn.primary {
         background: linear-gradient(135deg, var(--brand), var(--brand-2));
         color: #fff;
-        box-shadow: 0 6px 18px rgba(32, 227, 178, 0.28);
+        box-shadow: 0 4px 12px rgba(42, 47, 117, 0.12);
+        font-size: 1rem;
+        padding: 14px 28px;
+        border-radius: 14px;
+        font-weight: 700;
+        border: none;
+        transition: background 0.2s;
+      }
+      .btn.primary:hover {
+        background: linear-gradient(135deg, var(--brand-2), var(--brand));
       }
       .btn.ghost {
         border-color: #e5e7eb;
@@ -216,6 +221,54 @@
         .left {
           min-height: 220px;
           align-items: center;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .card {
+          flex-direction: column;
+          width: 100%;
+          height: auto;
+          min-width: 0;
+        }
+        .left {
+          flex: none;
+          width: 100%;
+          justify-content: center;
+          padding: 32px 0 0 0;
+        }
+        .photo {
+          width: 140px;
+          height: 140px;
+        }
+        .right {
+          padding: 28px 18px 32px 18px;
+          gap: 14px;
+        }
+        .brand {
+          gap: 12px;
+        }
+        .logo {
+          width: 38px;
+          height: 38px;
+          font-size: 1.1rem;
+        }
+        h1 {
+          font-size: 1.2rem;
+        }
+        .claim {
+          font-size: 1rem;
+        }
+        .contact {
+          gap: 10px;
+        }
+        .row {
+          font-size: 13px;
+          padding: 5px 10px;
+        }
+        .btn.primary {
+          font-size: 0.95rem;
+          padding: 10px 18px;
         }
       }
 
